@@ -1,8 +1,6 @@
 # [KinesteX AI](https://kinestex.com)
 ## INTEGRATE AI FITNESS & PHYSIO TRAINER IN YOUR APP IN MINUTES
 
-Demo project: https://github.com/V-m1r/KinesteXReactNativeDemo
-
 ## Configuration
 
 #### AndroidManifest.xml
