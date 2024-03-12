@@ -1,6 +1,8 @@
 # [KinesteX AI](https://kinestex.com)
 ## INTEGRATE AI FITNESS & PHYSIO TRAINER IN YOUR APP IN MINUTES
 
+Demo project: https://github.com/V-m1r/KinesteXReactNativeDemo
+
 ## Configuration
 
 #### AndroidManifest.xml
@@ -119,7 +121,7 @@ Pleae note that the default plan category is Strength and all of the plans will 
 ```jsx
    <KinestexSDK data={postData} handleMessage={handleMessage} />
 ```
-See App.tsx for demo code
+
 
 ------------------
 
