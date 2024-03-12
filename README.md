@@ -1,79 +1,127 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# [KinesteX AI](https://kinestex.com)
+## INTEGRATE AI FITNESS & PHYSIO TRAINER IN YOUR APP IN MINUTES
 
-# Getting Started
+## Configuration
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+#### AndroidManifest.xml
 
-## Step 1: Start the Metro Server
+Add the following permissions for camera and microphone usage:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+```xml
+<!-- Add this line inside the <manifest> tag -->
+<uses-permission android:name="android.permission.CAMERA" />
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.VIDEO_CAPTURE" />
 
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Start your Application
+#### Info.plist
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+Add the following keys for camera and microphone usage:
 
-### For Android
+```xml
+<key>NSCameraUsageDescription</key>
+<string>Camera access is required for video streaming.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>Microphone access is required for video streaming.</string>
+```
+#### WebView library
 
-```bash
-# using npm
-npm run android
+Install `kinestex-sdk` & `webview`:
 
-# OR using Yarn
-yarn android
+```
+npm install kinestex-sdk-react-native react-native-webview
+
 ```
 
-### For iOS
+### Available categories to sort plans (param key is planC): 
 
-```bash
-# using npm
-npm run ios
+| **Plan Category (key: planC)** | 
+| --- | 
+| **Strength** | 
+| **Cardio** |
+| **Weight Management** | 
+| **Rehabilitation** | 
 
-# OR using Yarn
-yarn ios
+Pleae note that the default plan category is Strength and all of the plans will be displayed under that category.
+
+
+### Available categories and sub categories to sort workouts: 
+
+| **Category (key: category)** |
+| --- | 
+| **Fitness** | 
+| **Rehabilitation** | 
+
+
+## Available parameters:
+```jsx
+  const postData = {
+// REQUIRED
+    userId: 'YOUR USER ID',
+    company: 'YOUR COMPANY', // contact KinesteX
+    key: apiKey, // STORE KEY SECURELY. WE RECOMMEND STORING AND RETRIEVING IT FROM YOUR DATABASE
+    planC: 'Cardio',
+// OPTIONAL
+    category: 'Fitness', // Workout category, leave null if you do not want to show workouts separately from plans
+    age: 50, // can be left null
+    height: 150, // in cm. can be left null
+    weight: 200, // in kg. can be left null
+    gender: 'Male' // can be left null
+  };
+```
+### Data handling: 
+
+```jsx
+
+  const handleMessage = (type: string, data: string) => {
+
+     
+      switch (type) {
+
+        case 'finished_workout':
+          console.log('Received data:', data);
+          break;
+
+        case 'exitApp':
+          // Make sure to close the webview when the user wishes to exit the app
+          console.log("User wishes to exit the app");
+          toggleWebView();
+          break;
+
+        default:
+          console.log('Message type:', type);
+          break;
+        
+      }
+      
+  };
+
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+ **Message Types in handleMessage function**:
+    The core of the `handleMessage` function is a switch statement that checks the `type` property of the parsed message. Each case corresponds to a different type of action or event that occurred in the KinesteX SDK.
+    
+   - `kinestex_launched`: Logs when the KinesteX SDK is successfully launched.
+   - `workout_opened`: Logs when a workout is opened.
+   - `workout_started`: Logs when a workout is started.
+   - `plan_unlocked`: Logs when a user unlocks a plan.
+   - `finished_workout`: Logs when a workout is finished.
+   - `error_occured`: Logs when there's an error. (Coming soon)
+   - `exercise_completed`: Logs when an exercise is completed.
+   - `exitApp`: Logs when user clicks on exit button, triggering an exit message. The iframe should be hidden if this message is sent
 
-## Step 3: Modifying your App
+------------------
 
-Now that you have successfully run the app, let's modify it.
+## Displaying KinesteX:
+```jsx
+   <KinestexSDK data={postData} handleMessage={handleMessage} />
+```
+See App.tsx for demo code
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+------------------
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## Contact:
+If you have any questions contact: support@kinestex.com
