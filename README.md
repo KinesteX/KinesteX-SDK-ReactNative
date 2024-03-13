@@ -101,17 +101,21 @@ Pleae note that the default plan category is Strength and all of the plans will 
 ```
 
 
- **Message Types in handleMessage function**:
+ **Data options**:
     The core of the `handleMessage` function is a switch statement that checks the `type` property of the parsed message. Each case corresponds to a different type of action or event that occurred in the KinesteX SDK.
+   
     
-   - `kinestex_launched`: Logs when the KinesteX SDK is successfully launched.
-   - `workout_opened`: Logs when a workout is opened.
-   - `workout_started`: Logs when a workout is started.
-   - `plan_unlocked`: Logs when a user unlocks a plan.
-   - `finished_workout`: Logs when a workout is finished.
-   - `error_occured`: Logs when there's an error. (Coming soon)
-   - `exercise_completed`: Logs when an exercise is completed.
-   - `exitApp`: Logs when user clicks on exit button, triggering an exit message. The iframe should be hidden if this message is sent
+| Dype          | Data  |          Description     |
+|----------------------|----------------------------|---------------------------------------------------------|
+| `kinestex_launched`  | Format: `dd mm yyyy hours:minutes:seconds` | When a user has launched KinesteX 
+| `exit_kinestex`     | - | Logs when a user clicks on exit button, requesting dismissal of KinesteX    |
+| `plan_unlocked`    | Format: `title: String, @date and time` | Logs when a workout plan is unlocked by a user    |
+| `workout_opened`      | Format: `title: String, @date and time` | Logs when a workout is opened by a user  |
+| `workout_started`   |  Format: `title: String, @date and time`| Logs when a workout is started.  |                                                  
+| `exercise_completed`      | Format:   `timeSpent: number`,  `repeats: number`, `calories: number`,  `exercise: string`  |  Logs everytime a user does a repetition of an exercise correctly |
+| `total_active_seconds` | Format: `number`   |   Logs every `5 seconds` and counts the number of active seconds a user has spent working out. This value is not sent when a user leaves camera tracking area  |
+| `left_camera_frame` | Format: `number`  |  Indicates that a user has left camera frame |
+
 
 ------------------
 
