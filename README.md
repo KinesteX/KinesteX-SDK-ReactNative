@@ -114,7 +114,8 @@ Pleae note that the default plan category is Strength and all of the plans will 
 | `workout_started`   |  Format: `title: String, @date and time`| Logs when a workout is started.  |                                                  
 | `exercise_completed`      | Format:   `timeSpent: number`,  `repeats: number`, `calories: number`,  `exercise: string`  |  Logs everytime a user does a repetition of an exercise correctly |
 | `total_active_seconds` | Format: `number`   |   Logs every `5 seconds` and counts the number of active seconds a user has spent working out. This value is not sent when a user leaves camera tracking area  |
-| `left_camera_frame` | Format: `number`  |  Indicates that a user has left camera frame |
+| `left_camera_frame` | Format: `number`  |  Indicates that a user has left the camera frame. The data sent is the current number of `total_active_seconds` |
+| `returned_camera_frame` | Format: `number`  |  Indicates that a user has returned to the camera frame. The data sent is the current number of `total_active_seconds` |
 
 
 ------------------
