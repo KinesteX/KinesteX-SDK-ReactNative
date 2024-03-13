@@ -108,7 +108,7 @@ Pleae note that the default plan category is Strength and all of the plans will 
 | Dype          | Data  |          Description     |
 |----------------------|----------------------------|---------------------------------------------------------|
 | `kinestex_launched`  | Format: `dd mm yyyy hours:minutes:seconds` | When a user has launched KinesteX 
-| `exit_kinestex`     | - | Logs when a user clicks on exit button, requesting dismissal of KinesteX    |
+| `exit_kinestex`     | Format: `dd mm yyyy hours:minutes:seconds, total_time_in_kinestex: number` | Logs when a user clicks on exit button, requesting dismissal of KinesteX and sending how much time a user has spent in total since launch   |
 | `plan_unlocked`    | Format: `title: String, @date and time` | Logs when a workout plan is unlocked by a user    |
 | `workout_opened`      | Format: `title: String, @date and time` | Logs when a workout is opened by a user  |
 | `workout_started`   |  Format: `title: String, @date and time`| Logs when a workout is started.  |                                                  
@@ -116,7 +116,7 @@ Pleae note that the default plan category is Strength and all of the plans will 
 | `total_active_seconds` | Format: `number`   |   Logs every `5 seconds` and counts the number of active seconds a user has spent working out. This value is not sent when a user leaves camera tracking area  |
 | `left_camera_frame` | Format: `number`  |  Indicates that a user has left the camera frame. The data sent is the current number of `total_active_seconds` |
 | `returned_camera_frame` | Format: `number`  |  Indicates that a user has returned to the camera frame. The data sent is the current number of `total_active_seconds` |
-| `workout_overview`    | Format:   `total_time_spent: number`,  `total_repeats: number`, `total_calories: number`,  `percentage_completed: number`,  `total_mistakes: number`  |  Logged when a user finishes the workout with a complete short summary of the workout  |
+| `workout_overview`    | Format:   ``,`total_time_spent: number`,  `total_repeats: number`, `total_calories: number`,  `percentage_completed: number`,  `total_mistakes: number`  |  Logged when a user finishes the workout with a complete short summary of the workout  |
 | `exercise_overview`    | Format:  `[exercise_completed]` |  Returns a log of all exercises and their data (exercise_completed data is defined 5 lines above) |
 | `workout_completed`    | Format:  `string` |  Logs when a user finishes the workout and exits the workout overview view |
 ------------------
