@@ -105,10 +105,10 @@ Pleae note that the default plan category is Strength and all of the plans will 
     The core of the `handleMessage` function is a switch statement that checks the `type` property of the parsed message. Each case corresponds to a different type of action or event that occurred in the KinesteX SDK.
    
     
-| Dype          | Data  |          Description     |
+| Type          | Data  |          Description     |
 |----------------------|----------------------------|---------------------------------------------------------|
 | `kinestex_launched`  | Format: `dd mm yyyy hours:minutes:seconds` | When a user has launched KinesteX 
-| `exit_kinestex`     | Format: `dd mm yyyy hours:minutes:seconds, total_time_in_kinestex: number` | Logs when a user clicks on exit button, requesting dismissal of KinesteX and sending how much time a user has spent in total since launch   |
+| `exit_kinestex`     | Format: `dd mm yyyy hours:minutes:seconds`, `time_spent: number` | Logs when a user clicks on exit button, requesting dismissal of KinesteX and sending how much time a user has spent totally in seconds since launch   |
 | `plan_unlocked`    | Format: `title: String, @date and time` | Logs when a workout plan is unlocked by a user    |
 | `workout_opened`      | Format: `title: String, @date and time` | Logs when a workout is opened by a user  |
 | `workout_started`   |  Format: `title: String, @date and time`| Logs when a workout is started.  |                                                  
