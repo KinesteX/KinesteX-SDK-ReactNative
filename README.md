@@ -108,7 +108,7 @@ Pleae note that the default plan category is Strength and all of the plans will 
 | Type          | Data  |          Description     |
 |----------------------|----------------------------|---------------------------------------------------------|
 | `kinestex_launched`  | Format: `dd mm yyyy hours:minutes:seconds` | When a user has launched KinesteX 
-| `exit_kinestex`     | Format: `dd mm yyyy hours:minutes:seconds`, `time_spent: number` | Logs when a user clicks on exit button, requesting dismissal of KinesteX and sending how much time a user has spent totally in seconds since launch   |
+| `exit_kinestex`     | Format: `date: dd mm yyyy hours:minutes:seconds`, `time_spent: number` | Logs when a user clicks on exit button, requesting dismissal of KinesteX and sending how much time a user has spent totally in seconds since launch   |
 | `plan_unlocked`    | Format: `title: String, date: date and time` | Logs when a workout plan is unlocked by a user    |
 | `workout_opened`      | Format: `title: String, date: date and time` | Logs when a workout is opened by a user  |
 | `workout_started`   |  Format: `title: String, date: date and time`| Logs when a workout is started.  |                                                  
