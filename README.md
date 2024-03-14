@@ -112,7 +112,7 @@ Pleae note that the default plan category is Strength and all of the plans will 
 | `plan_unlocked`    | Format: `title: String, date: date and time` | Logs when a workout plan is unlocked by a user    |
 | `workout_opened`      | Format: `title: String, date: date and time` | Logs when a workout is opened by a user  |
 | `workout_started`   |  Format: `title: String, date: date and time`| Logs when a workout is started.  |                                                  
-| `exercise_completed`      | Format: `time_spent: number`,  `repeats: number`, `calories: number`,  `exercise: string`, `exercise_completed: string`  `mistakes: [string: number]`  |  Logs everytime a user finishes an exercise |
+| `exercise_completed`      | Format: `time_spent: number`,  `repeats: number`, `calories: number`,  `exercise: string`, `mistakes: [string: number]`  |  Logs everytime a user finishes an exercise |
 | `total_active_seconds` | Format: `number`   |   Logs every `5 seconds` and counts the number of active seconds a user has spent working out. This value is not sent when a user leaves camera tracking area  |
 | `left_camera_frame` | Format: `number`  |  Indicates that a user has left the camera frame. The data sent is the current number of `total_active_seconds` |
 | `returned_camera_frame` | Format: `number`  |  Indicates that a user has returned to the camera frame. The data sent is the current number of `total_active_seconds` |
