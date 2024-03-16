@@ -84,7 +84,7 @@ Pleae note that the default plan category is Strength and all of the plans will 
           console.log('Received data:', data);
           break;
 
-        case 'exitApp':
+        case 'exit_kinestex':
           // Make sure to close the webview when the user wishes to exit the app
           console.log("User wishes to exit the app");
           toggleWebView();
