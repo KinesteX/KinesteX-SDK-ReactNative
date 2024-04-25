@@ -47,7 +47,7 @@ npm install kinestex-sdk-react-native react-native-webview
 Pleae note that the default plan category is Strength and all of the plans will be displayed under that category.
 
 
-### Available categories and sub categories to sort workouts: 
+### Available categories to sort workouts: 
 
 | **Category (key: category)** |
 | --- | 
