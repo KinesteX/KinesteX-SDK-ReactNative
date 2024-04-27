@@ -1,5 +1,8 @@
-# [KinesteX AI](https://kinestex.com)
-## INTEGRATE AI FITNESS & PHYSIO TRAINER IN YOUR APP IN MINUTES
+# [KinesteX AI Fitness SDK](https://kinestex.com)
+## INTEGRATE AI TRAINER IN YOUR APP IN MINUTES
+### Easily transform your platform with our SDK: white-labeled workouts with precise motion tracking and real-time feedback tailored for accuracy and engagement
+
+https://github.com/V-m1r/KinesteX-B2B-AI-Fitness-and-Physio/assets/62508191/ac4817ca-9257-402d-81db-74e95060b153
 
 ## Configuration
 
