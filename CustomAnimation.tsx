@@ -10,9 +10,26 @@ const App = () => {
   const progress = useRef(new Animated.Value(0)).current;
   const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
 
+  useEffect(() => {
+    startProgressBarAnimation();
+  }, []);
+
+  // for custom animation of progress bar
+  const startProgressBarAnimation = () => {
+    progress.setValue(0); // Reset the progress value
+    Animated.timing(progress, {
+      toValue: 1,
+      duration: 5000, // 5 seconds
+      useNativeDriver: false,
+    }).start();
+  };
 
   const toggleWebView = (option: 'coach' | 'ai') => {
     setSelectedOption(option);
+    if (option === 'ai') {
+      startProgressBarAnimation();
+      setIsOverlayVisible(true);
+    }
     setShowWebView(option === 'ai');
   };
 
@@ -100,6 +117,14 @@ const App = () => {
             </View>
           )}
 
+          {/* SHOW CUSTOM ANIMATION */}
+
+          {isOverlayVisible && (
+            <View style={styles.overlay}>
+              <Animated.View style={[styles.progressBar, { width: progressBarWidth }]} />
+              <Text style={styles.blackScreenText}>Your loading animation</Text>
+            </View>
+          )}
         </View>
       </View>
     </SafeAreaView>
