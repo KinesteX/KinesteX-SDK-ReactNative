@@ -1,41 +1,43 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {Button, SafeAreaView, StyleSheet, View} from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity, Animated, StatusBar } from 'react-native';
 import KinestexSDK from 'kinestex-sdk-react-native';
-import { IPostData, IntegrationOption, KinesteXSDKCamera, Lifestyle, PlanCategory } from 'kinestex-sdk-react-native/src/types';
-
+import { IntegrationOption, PlanCategory, KinesteXSDKCamera, IPostData } from 'kinestex-sdk-react-native/src/types';
 
 const App = () => {
-  const [showKinesteX, setshowKinesteX] = useState(false);
+  const [showWebView, setShowWebView] = useState(true);
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const [selectedOption, setSelectedOption] = useState<'coach' | 'ai'>('ai');
+  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
+  const progress = useRef(new Animated.Value(0)).current;
   const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
 
+  useEffect(() => {
+    startProgressBarAnimation();
+  }, []);
 
-  const toggleKinesteX = () => {
-    setshowKinesteX(!showKinesteX);
+  const startProgressBarAnimation = () => {
+    progress.setValue(0); // Reset the progress value
+    Animated.timing(progress, {
+      toValue: 1,
+      duration: 5000, // 5 seconds
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const toggleWebView = (option: 'coach' | 'ai') => {
+    setSelectedOption(option);
+    if (option === 'ai') {
+      startProgressBarAnimation();
+      setIsOverlayVisible(true);
+    }
+    setShowWebView(option === 'ai');
   };
 
   const postData: IPostData = {
-    key: 'YOUR API KEY',
+    key: '',
     userId: 'YOUR USER ID',
-    company: 'YOUR COMPANY NAME',
-
-    // FOR COMPLETE UX INTEGRATION - PLAN CATEGORY
+    company: '',
     planCategory: PlanCategory.Cardio,
-
-     // FOR CAMERA INTEGRATION 
-    // currentExercise: 'Squats', 
-    // exercises: ['Squats', 'Pushups', 'Jumping Jacks'],
-
-    // FOR CHALLENGE INTEGRATION
-    // countdown: 100, // countdown of challenge in seconds
-    // exercise: 'Squats', // exercise for challenge
-
-    // OPTIONAL USER DETAILS
-    age: 25,
-    height: 180, // in cm
-    weight: 75, // in kg
-    gender: 'Male', // can be only Male or Female
-    lifestyle: Lifestyle.Active, // can be Sedentary, SlightlyActive, Active, VeryActive
-
   };
 
   const handleMessage = (type: string, data: { [key: string]: any }) => {
@@ -43,145 +45,163 @@ const App = () => {
       case 'finished_workout':
         console.log('Received data:', data);
         break;
-        case 'exit_kinestex':
-          console.log("User wishes to exit the app", data);
-          // Access specific key-value pairs
-          if (data.message) {
-            console.log('Date:', data.message);
-          }
-          toggleKinesteX();
-          break;
+      case 'kinestex_launched':
+        setTimeout(() => {
+          setIsOverlayVisible(false);
+        }, 1000);
+        break;
+      case 'exit_kinestex':
+        console.log("User wishes to exit the app", data);
+        if (data.message) {
+          console.log('Date:', data.message);
+        }
+        setIsOverlayVisible(true);
+        setShowWebView(false);
+        break;
       case 'error_occured':
         console.log('Error occured:', data);
         break;
-      case "workout_opened":
-        console.log('Workout opened:', data);
-        break;
-      
       case "plan_unlocked":
         console.log('Workout plan unlocked:', data);
         break;
-      
-      // all other cases 
-      // ...
-
-      // FOR CAMERA COMPONENT
-      case "successful_repeat":
-        // getting number of current reps and passing it in real-time
-        console.log('Current rep:', data.value);
-        break;
-      case "mistake":
-        // getting current mistake a person has made and passing it in real-time
-        console.log('Mistake:', data.value);
-        break;
-      
       default:
         console.log('Unknown message type:', type, data);
         break;
     }
   };
 
-  // For Camera component to change the exercise
-  const changeExercise = () => {
-    kinestexSDKRef.current?.changeExercise("Jumping Jack");
-  };
-
+  const progressBarWidth = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0%', '100%'],
+  });
 
   return (
-    <SafeAreaView style={styles.container}>
-      {!showKinesteX && (
-        <View style={styles.buttonContainer}>
-          <Button title="Open KinesteX" onPress={toggleKinesteX} />
+    <SafeAreaView style={styles.safeArea}>
+      <StatusBar barStyle="light-content" backgroundColor="black" />
+      <View style={styles.container}>
+        <View style={styles.navBar}>
+          <TouchableOpacity
+            style={[
+              styles.navButton,
+              selectedOption === 'coach' && styles.navButtonSelected,
+            ]}
+            onPress={() => toggleWebView('coach')}
+          >
+            <Text
+              style={[
+                styles.navButtonText,
+                selectedOption === 'coach' && styles.navButtonTextSelected,
+              ]}
+            >
+              Get a coach
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.navButton,
+              selectedOption === 'ai' && styles.navButtonSelected,
+            ]}
+            onPress={() => toggleWebView('ai')}
+          >
+            <Text
+              style={[
+                styles.navButtonText,
+                selectedOption === 'ai' && styles.navButtonTextSelected,
+              ]}
+            >
+              AI coach
+            </Text>
+          </TouchableOpacity>
         </View>
-      )}
-
-      {showKinesteX && (
-
-
-
-        /* --- MAIN COMPONENT --- */
-           <View style={styles.fullscreen}>
-            <KinestexSDK 
-              ref={kinestexSDKRef}
-              data={postData} 
-              integrationOption={IntegrationOption.MAIN}
-              handleMessage={handleMessage} 
-            />
+        <View style={styles.content}>
+          {!showWebView && (
+            <View style={styles.blackScreen}>
+              <Text style={styles.blackScreenText}>Get a coach screen</Text>
+            </View>
+          )}
+          {showWebView && (
+            <View style={styles.webViewContainer}>
+              <View style={styles.webViewContent}>
+                <KinestexSDK 
+                  ref={kinestexSDKRef}
+                  data={postData} 
+                  integrationOption={IntegrationOption.MAIN}
+                  handleMessage={handleMessage} 
+                />
+              </View>
+            </View>
+          )}
+          {/* {isOverlayVisible && (
+            <View style={styles.overlay}>
+              <Animated.View style={[styles.progressBar, { width: progressBarWidth }]} />
+              <Text style={styles.blackScreenText}>Your loading animation</Text>
+            </View>
+          )} */}
         </View>
-
-
-
-
-        /* --- PLAN COMPONENT --- */
-
-        // <View style={styles.fullscreen}>
-        //     <KinestexSDK 
-        //       ref={kinestexSDKRef}
-        //       data={postData} 
-        //       integrationOption={IntegrationOption.PLAN}
-        //       handleMessage={handleMessage} 
-        //       plan={"Circuit Training"}
-        //     />
-        // </View>
-
-
-
-
-       /* --- WORKOUT COMPONENT --- */
-
-        // <View style={styles.fullscreen}>
-        //     <KinestexSDK 
-        //       ref={kinestexSDKRef}
-        //       data={postData} 
-        //       integrationOption={IntegrationOption.WORKOUT}
-        //       handleMessage={handleMessage} 
-        //       workout={"Circuit Training"}
-        //     />
-        // </View>
-
-
-
-
-        /* -- CAMERA COMPONENT -- */
-
-        // <View style={styles.fullscreen}>
-        //     <KinestexSDK 
-        //       ref={kinestexSDKRef}
-        //       data={postData} 
-        //       integrationOption={IntegrationOption.CAMERA}
-        //       handleMessage={handleMessage} 
-        //     />
-
-        //   <Button title="Change Exercise" onPress={changeExercise} />
-        // </View>
-
-      )}
+      </View>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: 'black',
+  },
   container: {
+    flex: 1,
+  },
+  navBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: 60,
+    backgroundColor: 'black',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+  navButton: {
+    padding: 10,
+  },
+  navButtonSelected: {
+    backgroundColor: 'gray',
+  },
+  navButtonText: {
+    fontSize: 18,
+    color: 'gray',
+  },
+  navButtonTextSelected: {
+    color: 'white',
+  },
+  content: {
+    flex: 1,
+  },
+  blackScreen: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'black',
   },
-  buttonContainer: {
-    width: '80%', // Adjust the width as needed
+  blackScreenText: {
+    color: 'white',
+    fontSize: 24,
   },
-  fullscreen: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  overlayButton: {
-    position: 'absolute',
-    top: 50, // Adjust the position as needed
-    right: 20, // Adjust the position as needed
-  },
-  camera: {
+  webViewContainer: {
     flex: 1,
-    width: '100%',
+  },
+  webViewContent: {
+    flex: 1,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  progressBar: {
+    height: 10,
+    backgroundColor: 'blue',
   },
 });
 
 export default App;
-
