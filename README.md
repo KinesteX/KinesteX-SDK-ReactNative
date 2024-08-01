@@ -151,7 +151,7 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 />
 ```
 
-###Challenge Component**
+### Challenge Component
 1. Change `postData`:
 ```typescript
 const postData: IPostData = {
