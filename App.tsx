@@ -6,39 +6,52 @@ import { IntegrationOption, PlanCategory, KinesteXSDKCamera, IPostData } from 'k
 const App = () => {
   const [showWebView, setShowWebView] = useState(true);
   const [selectedOption, setSelectedOption] = useState<'coach' | 'ai'>('ai');
-  const [isOverlayVisible, setIsOverlayVisible] = useState(true);
-  const progress = useRef(new Animated.Value(0)).current;
   const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
-
 
   const toggleWebView = (option: 'coach' | 'ai') => {
     setSelectedOption(option);
     setShowWebView(option === 'ai');
   };
 
-  const postData: IPostData = {
-    key: 'YOUR KEY',
+  // we will use this postData for the MAIN, PLAN, AND WORKOUT Integration Option
+  const postDataMAIN: IPostData = {
+    key: 'YOUR API KEY',
     userId: 'YOUR USER ID',
-    company: 'YOUR COMPANY',
-    planCategory: PlanCategory.Cardio,
+    company: 'YOUR COMPANY NAME',
+    planCategory: PlanCategory.Cardio, // plan category
   };
 
+  // we will use this postData for the CHALLENGE Integration Option
+  const postDataChallenge: IPostData = {
+    key: 'YOUR API KEY',
+    userId: 'YOUR USER ID',
+    company: 'YOUR COMPANY NAME',
+    countdown: 100, // duration of the challenge in seconds
+    exercise: 'Squats', // challenge exercise name
+  };
+
+  // we will use this postData for the CAMERA Integration Option
+  const postDataCamera: IPostData = {
+    key: 'YOUR API KEY',
+    userId: 'YOUR USER ID',
+    company: 'YOUR COMPANY NAME',
+    currentExercise: 'Squats', // current exercise name
+    exercises: ['Squats', 'Jumping Jack'] // array of expected exercises
+  };
+
+  // handle data from the kinestex sdk
   const handleMessage = (type: string, data: { [key: string]: any }) => {
     switch (type) {
       case 'finished_workout':
         console.log('Received data:', data);
         break;
       case 'kinestex_launched':
-        setTimeout(() => {
-          setIsOverlayVisible(false);
-        }, 1000);
         break;
       case 'exit_kinestex':
         console.log("User wishes to exit the app", data);
         if (data.message) {
           console.log('Date:', data.message);
         }
-        setIsOverlayVisible(true);
         setShowWebView(false);
         break;
       case 'error_occured':
@@ -53,10 +66,13 @@ const App = () => {
     }
   };
 
-  const progressBarWidth = progress.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0%', '100%'],
-  });
+  
+  // setting another exercise for the CAMERA Integration Option
+  // const changeExerciseCamera = () => {
+  //   if (kinestexSDKRef.current) {
+  //     kinestexSDKRef.current?.changeExercise('Jumping Jack');
+  //   }
+  // }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -92,9 +108,16 @@ const App = () => {
               <View style={styles.webViewContent}>
                 <KinestexSDK 
                   ref={kinestexSDKRef}
-                  data={postData} 
+                  // change based on your use-case
+                  data={postDataMAIN} 
+                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, CAMERA
                   integrationOption={IntegrationOption.MAIN}
+                  // handle data from the kinestex sdk
                   handleMessage={handleMessage} 
+                  // If using the PLAN Integration Option, you must specify the plan name that you want to present: 
+                  plan="Circuit Training"
+                  // If using the WORKOUT Integration Option, you must specify the workout name that you want to present: 
+                  workout="Fitness Lite"
                 />
               </View>
             </View>

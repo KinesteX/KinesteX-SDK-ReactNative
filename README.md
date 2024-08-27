@@ -46,13 +46,19 @@ Install `kinestex-sdk` & `webview`:
 npm install kinestex-sdk-react-native react-native-webview
 ```
 
+**If you are using `expo` to build your app, you need to install `kinestex-sdk-react-native` with the following command:**
+
+```bash
+npx expo install react-native-webview
+```
+
 ## Usage
 
 ### Initial Setup
 
 1. **Prerequisites**: Ensure you’ve added the necessary permissions in `AndroidManifest.xml` and `Info.plist`.
 
-2. **Launching the View**: To display KinesteX, we will be using an iframe. We have multiple launch options in KinesteXSDK, and based on the option you select, you need to adjust the parameters you are sending to us.
+2. **Launching the View**: To display the AI training, KinesteX SDK uses an internal webview library. We have multiple launch options in KinesteXSDK, and based on the option you select, you need to adjust the parameters you are sending to us.
 
 ### Integration Options
 
@@ -64,6 +70,7 @@ npm install kinestex-sdk-react-native react-native-webview
 | **CHALLENGE**              | Integration of Individual Exercise in a challenge form          |
 | **CAMERA**                 | Integration of our camera component with pose-analysis and feedback |
 
+## MAIN Integration Option
 ### Available Categories to Sort Plans
 
 | **Plan Category (key: planCategory)** |
@@ -127,9 +134,9 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 />
 ```
 
-### Examples for Each Integration Option
+## PLAN Integration Option
 
-**Individual Plan**
+You do not have to specify planCategory in this integration option as you would specify the plan directly.
 ```typescript
 <KinestexSDK 
   ref={kinestexSDKRef}
@@ -140,7 +147,7 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 />
 ```
 
-**Individual Workout**
+## WORKOUT Integration Option
 ```typescript
 <KinestexSDK 
   ref={kinestexSDKRef}
@@ -151,8 +158,8 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 />
 ```
 
-### Challenge Component
-1. Change `postData`:
+## CHALLENGE Integration Option
+1. Modify `postData` to include the exercise and duration of the challenge:
 ```typescript
 const postData: IPostData = {
   key: apiKey,
@@ -163,7 +170,7 @@ const postData: IPostData = {
 };
 ```
 
-2. Change integration option in KinesteXSDK:
+2. Select integration option in KinesteXSDK:
 ```typescript
 <KinestexSDK 
   ref={kinestexSDKRef}
@@ -173,8 +180,9 @@ const postData: IPostData = {
 />
 ```
 
-**Camera Component**
-1. Change `postData`:
+## CAMERA Integration Option
+
+1. Modify `postData` to include the current exercise and all expected exercises a person should do:
 ```typescript
 const postData: IPostData = {
   key: apiKey,
@@ -219,7 +227,7 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 };
 ```
 
-## Data Points
+## Available Data Points
 
 The KinesteX SDK provides various data points that are returned through the message callback. Here are the available data types:
 
