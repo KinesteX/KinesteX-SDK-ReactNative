@@ -23,7 +23,6 @@ Add the following permissions for camera and microphone usage:
 <!-- Add this line inside the <manifest> tag -->
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.VIDEO_CAPTURE" />
 ```
 
 #### Info.plist
