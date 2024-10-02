@@ -1,5 +1,5 @@
-# [KinesteX AI](https://kinestex.com)
-## INTEGRATE AI FITNESS & PHYSIO TRAINER IN YOUR APP IN MINUTES
+# [Precise Motion Tracking and Analysis SDK](https://kinestex.com)
+## Stay Ahead with KinesteX AI Motion Tracking.
 
 ## Available Integration Options
 
