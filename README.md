@@ -64,6 +64,7 @@ npx expo install react-native-webview
 | **PLAN**                   | Integration of Individual Plan Component                        |
 | **WORKOUT**                | Integration of Individual Workout Component                     |
 | **CHALLENGE**              | Integration of Individual Exercise in a challenge form          |
+| **EXPERIENCE**             | Integration of our Experience component. Contact support for more details |
 | **CAMERA**                 | Integration of our camera component with pose-analysis and feedback |
 
 ## MAIN Integration Option
@@ -172,6 +173,17 @@ const postData: IPostData = {
   ref={kinestexSDKRef}
   data={postData} 
   integrationOption={IntegrationOption.CHALLENGE}
+  handleMessage={handleMessage} 
+/>
+```
+
+## EXPERIENCE Integration Option
+```typescript
+<KinestexSDK 
+  ref={kinestexSDKRef}
+  data={postData} 
+  integrationOption={IntegrationOption.EXPERIENCE} // EXPERIENCE integration option
+  experience={"box"} // exact name of the experience you want to display
   handleMessage={handleMessage} 
 />
 ```
