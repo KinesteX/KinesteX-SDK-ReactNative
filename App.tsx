@@ -110,7 +110,7 @@ const App = () => {
                   ref={kinestexSDKRef}
                   // change based on your use-case
                   data={postDataMAIN} 
-                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, CAMERA
+                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, EXPERIENCE CAMERA
                   integrationOption={IntegrationOption.MAIN}
                   // handle data from the kinestex sdk
                   handleMessage={handleMessage} 
@@ -118,6 +118,8 @@ const App = () => {
                   plan="Circuit Training"
                   // If using the WORKOUT Integration Option, you must specify the workout name that you want to present: 
                   workout="Fitness Lite"
+                  // IF using EXPERIENCE Integration Option, you must specify the experience name that you want to present:
+                  experience={"box"}
                 />
               </View>
             </View>
