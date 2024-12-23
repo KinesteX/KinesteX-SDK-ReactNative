@@ -19,6 +19,9 @@ const App = () => {
     userId: 'YOUR USER ID',
     company: 'YOUR COMPANY NAME',
     planCategory: PlanCategory.Cardio, // plan category
+    customParameters: {
+    style: "dark", // dark or light theme (customizable in the admin dashboard)
+    }
   };
 
   // we will use this postData for the CHALLENGE Integration Option
@@ -110,7 +113,7 @@ const App = () => {
                   ref={kinestexSDKRef}
                   // change based on your use-case
                   data={postDataMAIN} 
-                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, EXPERIENCE CAMERA
+                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, EXPERIENCE, CAMERA
                   integrationOption={IntegrationOption.MAIN}
                   // handle data from the kinestex sdk
                   handleMessage={handleMessage} 
