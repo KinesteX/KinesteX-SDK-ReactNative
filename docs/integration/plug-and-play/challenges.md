@@ -4,6 +4,8 @@
 - **Boost Activity**: Keep fitness exciting and rewarding for users.  
 - **Easy Integration**: Add dynamic challenges effortlessly to your app.  
 
+You can find exercises in our library [here](https://workout-view.kinestex.com/?tab=exercises), or create your own exercises in our [admin portal](https://admin.kinestex.com).
+
 # **CHALLENGE Integration Example**
 
 ### 1. Add `exercise` and `countdown` fields to `postData`: 
