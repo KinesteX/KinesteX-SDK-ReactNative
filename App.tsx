@@ -29,6 +29,7 @@ const App = () => {
     key: 'YOUR API KEY',
     userId: 'YOUR USER ID',
     company: 'YOUR COMPANY NAME',
+    showLeaderboard: true, // show leaderboard (true by default)
     countdown: 100, // duration of the challenge in seconds
     exercise: 'Squats', // challenge exercise name
   };
@@ -113,8 +114,9 @@ const App = () => {
                   ref={kinestexSDKRef}
                   // change based on your use-case
                   data={postDataMAIN} 
-                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, EXPERIENCE, CAMERA
+                  // change based on your use-case: MAIN, PLAN, WORKOUT, CHALLENGE, EXPERIENCE, CAMERA, LEADERBOARD
                   integrationOption={IntegrationOption.MAIN}
+                  username={"John Doe"} // if you know the username your user entered for leaderboard 
                   // handle data from the kinestex sdk
                   handleMessage={handleMessage} 
                   // If using the PLAN Integration Option, you must specify the plan name that you want to present: 

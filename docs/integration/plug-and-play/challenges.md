@@ -11,6 +11,7 @@
 const postData: IPostData = {
  // ... all initial fields
   exercise: 'Squats', // name or ID of the exercise
+  showLeaderboard: true, // show leaderboard at the end of the challenge(true by default)
   countdown: 100, // duration of challenge in seconds
 };
 ```
@@ -25,5 +26,6 @@ const postData: IPostData = {
 ```
 # Next steps: 
 - ### [View handleMessage available data points](../../data.md)
+- ### [Show Leaderboard Fullscreen](./leaderboard.md)
 - ### [View complete code example](../../examples/challenge.md)
 - ### [Explore more integration options](../overview.md)
