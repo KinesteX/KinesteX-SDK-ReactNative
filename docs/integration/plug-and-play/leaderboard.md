@@ -16,6 +16,7 @@ Whenever a new ranking is available, the leaderboard automatically refreshes to 
 const postData: IPostData = {
  // ... all initial fields
   exercise: 'Squats', // name or ID of the exercise to track
+  isHideHeaderMain: true, // hide exit button for leaderboard (false by default)
 };
 ```
 ### 2. Select `LEADERBOARD` IntegrationOption:
