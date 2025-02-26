@@ -83,6 +83,44 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
   }
 };
 ```
+
+### 4. Camera permission (Expo Android troubleshoot)
+In Android when building app with Expo, App level camera permission is not passed to the webview, so even if the camera permission dialog pops up, camera request in KinesteX never resolves. 
+To fix this:
+- Install expo-camera `npx expo install expo-camera`
+- In app.json: 
+```json
+{
+    "expo": {
+    "android": {
+      "permissions": ["android.permission.CAMERA"],
+     },
+
+    "ios": {
+     "infoPlist": {
+        "NSCameraUsageDescription": "For AI Motion Tracking to function please enable camera access. All processing is done on device"
+      },
+    }
+  }
+}
+```
+- In your component before displaying KinesteX Present a modal requesting camera permission and ensure it is granted: 
+```ts
+  const [permission, requestPermission] = useState(false); // to track permission status
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      if (status === "granted") {
+        requestPermission(true);
+      }
+    })();
+  }, []);
+
+  if (permission) {
+   // display KinesteXSDK View (check Next Steps)
+  }
+```
 # Next Steps
 ### **[> Available Integration Options](integration/overview.md)**
 ### **[> Explore Available Data Points](data.md)**
