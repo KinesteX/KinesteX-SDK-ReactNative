@@ -14,6 +14,10 @@ Add the following permissions for camera usage:
 <!-- Add this line inside the <manifest> tag -->
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.INTERNET"/>
+<uses-feature android:name="android.hardware.camera" android:required="false" />
+<!-- Optional: To detect device orientation when prompting to position phone correctly-->
+<uses-feature android:name="android.hardware.sensor.accelerometer" android:required="false" />
+<uses-feature android:name="android.hardware.sensor.gyroscope" android:required="false" />
 ```
 
 #### Info.plist
@@ -22,7 +26,9 @@ Add the following keys for camera usage:
 
 ```xml
 <key>NSCameraUsageDescription</key>
-<string>Camera access is required for video streaming.</string>
+<string>Please grant access to camera to start AI Workout</string>
+<key>NSMotionUsageDescription</key>
+<string>We need access to your device's motion sensors to properly position your phone for the workout</string>
 ```
 ### 2. Install KinesteX and react-native-webview packages
 Install `kinestex-sdk` & `webview`:
