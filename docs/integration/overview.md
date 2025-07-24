@@ -11,6 +11,7 @@
 | [`CHALLENGE`](./plug-and-play/challenges.md)   | Displays Individual Exercise in a challenge form                | [View Documentation](./plug-and-play/challenges.md)         |
 | [`LEADERBOARD`](./plug-and-play/leaderboard.md)   | Displays Leaderboard for individual challenge exercise              | [View Documentation](./plug-and-play/leaderboard.md)         |
 | [`EXPERIENCE`](./plug-and-play/ai-experiences.md)  | Displays AI Experience. Please contact support for more details | [View Documentation](./plug-and-play/ai-experiences.md)     |
+| [`(Beta) PERSONALIZED_PLAN`](./plug-and-play/personalized-plan.md)  | Displays a short survey and AI assessment upon completion a personalized AI plan will be created. Please contact support for more details | [View Documentation](./plug-and-play/personalized-plan.md)     |
 
 
 
@@ -38,6 +39,7 @@
 - [Challenges](./plug-and-play/challenges.md)
 - [Leaderboard](./plug-and-play/leaderboard.md)
 - [Gamified AI Experiences](./plug-and-play/ai-experiences.md)
-  
+- [(Beta) Personalized Plan](./plug-and-play/personalized-plan.md)
+
 ### Custom Solutions: 
 - [Motion Analysis](./custom/motion-analysis-component.md)

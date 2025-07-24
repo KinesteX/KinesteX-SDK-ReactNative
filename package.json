@@ -10,9 +10,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "kinestex-sdk-react-native": "^1.1.8",
+    "@react-native-picker/picker": "^2.11.1",
+    "kinestex-sdk-react-native": "^1.2.2",
     "react": "18.2.0",
     "react-native": "0.73.6",
+    "react-native-config": "^1.5.5",
+    "react-native-picker-select": "^9.3.1",
     "react-native-webview": "^13.8.1"
   },
   "devDependencies": {
