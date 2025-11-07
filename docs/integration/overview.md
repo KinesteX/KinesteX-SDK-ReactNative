@@ -12,7 +12,7 @@
 | [`LEADERBOARD`](./plug-and-play/leaderboard.md)   | Displays Leaderboard for individual challenge exercise              | [View Documentation](./plug-and-play/leaderboard.md)         |
 | [`EXPERIENCE`](./plug-and-play/ai-experiences.md)  | Displays AI Experience. Please contact support for more details | [View Documentation](./plug-and-play/ai-experiences.md)     |
 | [`(Beta) PERSONALIZED_PLAN`](./plug-and-play/personalized-plan.md)  | Displays a short survey and AI assessment upon completion a personalized AI plan will be created. Please contact support for more details | [View Documentation](./plug-and-play/personalized-plan.md)     |
-
+| [`CUSTOM_WORKOUT`](./plug-and-play/custom-workout.md)  | Allows you to pass exercise ids and display the workout flow, allowing you to customize and handle the onboarding process on app level and navigate user straight to the workout | [View Documentation](./plug-and-play/custom-workout.md)     |
 
 
 
@@ -40,6 +40,7 @@
 - [Leaderboard](./plug-and-play/leaderboard.md)
 - [Gamified AI Experiences](./plug-and-play/ai-experiences.md)
 - [(Beta) Personalized Plan](./plug-and-play/personalized-plan.md)
+- [Custom Workout](./plug-and-play/custom-workout.md)
 
 ### Custom Solutions: 
 - [Motion Analysis](./custom/motion-analysis-component.md)
