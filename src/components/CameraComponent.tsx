@@ -6,7 +6,6 @@ import {
   KinesteXSDKCamera,
   IPostData,
 } from 'kinestex-sdk-react-native/src/types';
-import Config from 'react-native-config';
 
 interface CameraComponentProps {
   onMessage: (type: string, data: {[key: string]: any}) => void;
@@ -16,9 +15,9 @@ const CameraComponent: React.FC<CameraComponentProps> = ({onMessage}) => {
   const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
 
   const postData: IPostData = {
-    key: Config.KINESTEX_API_KEY || 'YOUR_API_KEY',
-    userId: Config.KINESTEX_USER_ID || 'YOUR_USER_ID',
-    company: Config.KINESTEX_COMPANY_NAME || 'YOUR_COMPANY_NAME',
+    key: 'YOUR_API_KEY',
+    userId: 'YOUR_USER_ID',
+    company: 'YOUR_COMPANY_NAME',
     currentExercise: 'Squats', // current exercise name or MODEL ID (can be fetched from the API)
     exercises: ['Squats', 'Jumping Jack'], // all exercise names or MODEL IDs (can be fetched from the API)
   };

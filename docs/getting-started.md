@@ -30,17 +30,17 @@ Add the following keys for camera usage:
 <key>NSMotionUsageDescription</key>
 <string>We need access to your device's motion sensors to properly position your phone for the workout</string>
 ```
-### 2. Install KinesteX and react-native-webview packages
+### 2. Install KinesteX packages
 Install `kinestex-sdk` & `webview`:
 
 ```bash
-npm install kinestex-sdk-react-native react-native-webview
+npm install kinestex-sdk-react-native kinestex-react-native-webview
 ```
 
-**If you are using `expo` to build your app, you need to install `react-native-webview` with the following command:**
+**If you are using `expo` to build your app, you need to install `kinestex-react-native-webview` with the following command:**
 
 ```bash
-npx expo install react-native-webview
+npx expo install kinestex-react-native-webview
 ```
 
 ### 3. Setup recommendations
@@ -55,9 +55,16 @@ const postData: IPostData = {
   key: apiKey, // your API key
   userId: 'YOUR USER ID', // your unique user identifier. Can be any string, but must be unique for each user. 
   company: 'YOUR COMPANY', // your company name
-
+  style: {
+      style: 'dark', // dark or light theme (customizable in the admin dashboard)
+      // themeName: company name - by default we create you a theme with your company name, but if you create other themes, you can pass in their names here
+      loadingBackgroundColor: '000000', // value in hex (without #) to customize bg for initial loading screen
+      // loadingStickmanColor: string // value in hex (without #) to customize strickman color for initial loading screen
+      // loadingTextColor: string // value in hex (without #) to customize text color for initial loading screen
+  },
   customParameters: {
-    style: "dark", // dark or light theme (customizable in the admin dashboard)
+  // language: 'es' // to customize language. please ensure proper translations exist in admin portal for the content you want to display
+  // any other customization parameters
   },
 
   // OPTIONAL UserDetails used to make customized intensity of the workout and properly estimate calories burnt

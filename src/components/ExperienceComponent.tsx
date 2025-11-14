@@ -6,7 +6,6 @@ import {
   KinesteXSDKCamera,
   IPostData,
 } from 'kinestex-sdk-react-native/src/types';
-import Config from 'react-native-config';
 
 interface ExperienceComponentProps {
   onMessage: (type: string, data: {[key: string]: any}) => void;
@@ -18,11 +17,16 @@ const ExperienceComponent: React.FC<ExperienceComponentProps> = ({
   const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
 
   const postData: IPostData = {
-    key: Config.KINESTEX_API_KEY || 'YOUR_API_KEY',
-    userId: Config.KINESTEX_USER_ID || 'YOUR_USER_ID',
-    company: Config.KINESTEX_COMPANY_NAME || 'YOUR_COMPANY_NAME',
-    customParameters: {
-      style: 'dark',
+    key: 'YOUR_API_KEY',
+    userId: 'YOUR_USER_ID',
+    company: 'YOUR_COMPANY_NAME',
+    exercise: 'balloonpop', // balloon pop game experience
+    style: {
+      style: 'dark', // dark or light theme (customizable in the admin dashboard)
+      // themeName: company name - by default we create you a theme with your company name, but if you create other themes, you can pass in their names here
+      loadingBackgroundColor: '000000', // value in hex (without #) to customize bg for initial loading screen
+      // loadingStickmanColor: string // value in hex (without #) to customize strickman color for initial loading screen
+      // loadingTextColor: string // value in hex (without #) to customize text color for initial loading screen
     },
   };
 
@@ -33,7 +37,7 @@ const ExperienceComponent: React.FC<ExperienceComponentProps> = ({
         data={postData}
         integrationOption={IntegrationOption.EXPERIENCE}
         handleMessage={onMessage}
-        experience={'box'}
+        experience={'assessment'}
       />
     </View>
   );

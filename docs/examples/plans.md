@@ -12,9 +12,13 @@ const App = () => {
     userId: 'YOUR_USER_ID',
     company: 'YOUR_COMPANY_NAME',
 
-    customParameters: {
-      style: "dark"
-    }
+    style: {
+      style: 'dark', // dark or light theme (customizable in the admin dashboard)
+      // themeName: company name - by default we create you a theme with your company name, but if you create other themes, you can pass in their names here
+      loadingBackgroundColor: '000000', // value in hex (without #) to customize bg for initial loading screen
+      // loadingStickmanColor: string // value in hex (without #) to customize strickman color for initial loading screen
+      // loadingTextColor: string // value in hex (without #) to customize text color for initial loading screen
+  },
   };
 
   // Handle messages from the SDK
