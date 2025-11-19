@@ -1,4 +1,9 @@
-## [1.2.6] - Nov 14 2025
+## [1.2.7] - Nov 19 2025
+### Changed
+- Removed `kinestex-react-native-webview` as a direct dependency. It didn't prove to scale and users reported running into duplication issues if they already use react-native-webview, so instead of patching the iOS issue ourselves and republishing the react-native-webview ourselves, we decided to provide patch instructions. This is the simplest and most reliable approach. 
+- Please review [getting-started.md](./getting-started.md) for migration steps 
+
+## [1.2.6 - **DEPRECATED**] - Nov 14 2025
 
 ### Added
 - Introduced `kinestex-react-native-webview` as a direct dependency. This is our dedicated fork of `react-native-webview`, providing improved permission handling and a more robust integration with KinesteX features.

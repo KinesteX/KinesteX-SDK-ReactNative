@@ -1,0 +1,24 @@
+diff --git a/node_modules/react-native-webview/apple/RNCWebViewImpl.m b/node_modules/react-native-webview/apple/RNCWebViewImpl.m
+index 7f5c24d..d328fa1 100644
+--- a/node_modules/react-native-webview/apple/RNCWebViewImpl.m
++++ b/node_modules/react-native-webview/apple/RNCWebViewImpl.m
+@@ -1309,6 +1309,19 @@ - (void)                         webView:(WKWebView *)webView
+     decisionHandler(WKPermissionDecisionPrompt);
+   }
+ }
++
++/**
++ * Device Orientation and Motion permissions (prevent multiple prompts)
++ */
++- (void)                         webView:(WKWebView *)webView
++  requestDeviceOrientationAndMotionPermissionForOrigin:(WKSecurityOrigin *)origin
++                        initiatedByFrame:(WKFrameInfo *)frame
++                         decisionHandler:(void (^)(WKPermissionDecision decision))decisionHandler {
++  (void)webView;
++  (void)origin;
++  (void)frame;
++  decisionHandler(WKPermissionDecisionGrant);
++}
+ #endif
+ 
+ #if !TARGET_OS_OSX

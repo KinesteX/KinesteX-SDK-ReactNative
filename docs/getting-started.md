@@ -30,19 +30,65 @@ Add the following keys for camera usage:
 <key>NSMotionUsageDescription</key>
 <string>We need access to your device's motion sensors to properly position your phone for the workout</string>
 ```
-### 2. Install KinesteX packages
+### 2. Install KinesteX package and react-native-webview
 Install `kinestex-sdk` & `webview`:
 
 ```bash
-npm install kinestex-sdk-react-native kinestex-react-native-webview
+npm install kinestex-sdk-react-native react-native-webview
 ```
 
-**If you are using `expo` to build your app, you need to install `kinestex-react-native-webview` with the following command:**
+**If you are using `expo` to build your app, you need to install `react-native-webview` with the following command:**
 
 ```bash
-npx expo install kinestex-react-native-webview
+npx expo install react-native-webview
 ```
 
+### 2.1: Enable device orientation permission for  iOS 15+
+`react-native-webview` does not currently support the iOS 15+ permission API for Device Motion/Orientation automatically. To ensure KinesteX works correctly on iOS, you must apply a small patch to the webview package.
+
+1. Install patch-package
+```bash
+npm install patch-package postinstall-postinstall --save-dev
+```
+
+2. Edit your package.json
+
+Add "postinstall": "patch-package" to your scripts:
+
+```json
+	"scripts": {
+	  "postinstall": "patch-package"
+	}
+```
+3. Apply the Fix
+
+- Navigate to **node_modules/react-native-webview/apple/RNCWebViewImpl.m.**
+
+- Open the file and look for `requestMediaCapturePermissionForOrigin`
+
+- Right after the function call after line 1312, paste:
+```c
+/**
+ * Device Orientation and Motion permissions (prevent multiple prompts)
+ */
+- (void)                         webView:(WKWebView *)webView
+  requestDeviceOrientationAndMotionPermissionForOrigin:(WKSecurityOrigin *)origin
+                        initiatedByFrame:(WKFrameInfo *)frame
+                         decisionHandler:(void (^)(WKPermissionDecision decision))decisionHandler {
+  (void)webView;
+  (void)origin;
+  (void)frame;
+  decisionHandler(WKPermissionDecisionGrant);
+}
+```
+4. Save the Patch
+
+
+Run the following command to create a permanent patch file:
+```bash
+npx patch-package react-native-webview
+```
+Now, every time you (or your team) run npm install, this fix will be applied automatically.
 ### 3. Setup recommendations
 1. Create a reference to KinesteXSDK component: 
 ```typescript
