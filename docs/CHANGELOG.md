@@ -23,5 +23,7 @@ npx react-native clean
 2. Install kinestex-sdk-react-native and kinestex-react-native-webview: 
 ```
 npm install kinestex-sdk-react-native kinestex-react-native-webview
+cd ios
+pod install
 ```
 3. You might want to update styles as well following our new guidelines. Please review [getting-started.md](./getting-started.md)
