@@ -81,6 +81,10 @@ Add "postinstall": "patch-package" to your scripts:
   decisionHandler(WKPermissionDecisionGrant);
 }
 ```
+How it should look like:
+<img width="1068" height="831" alt="Screenshot 2025-11-19 at 3 35 25 PM" src="https://github.com/user-attachments/assets/a29fe410-ff24-4635-b450-70c9d9b6f7b5" />
+
+
 4. Save the Patch
 
 
@@ -89,6 +93,9 @@ Run the following command to create a permanent patch file:
 npx patch-package react-native-webview
 ```
 Now, every time you (or your team) run npm install, this fix will be applied automatically.
+
+
+
 ### 3. Setup recommendations
 1. Create a reference to KinesteXSDK component: 
 ```typescript
