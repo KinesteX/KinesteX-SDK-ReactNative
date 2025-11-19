@@ -57,7 +57,7 @@ Add "postinstall": "patch-package" to your scripts:
 
 ```json
 "scripts": {
-	  "postinstall": "patch-package"
+  "postinstall": "patch-package"
 }
 ```
 3. Apply the Fix
