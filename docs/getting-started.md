@@ -43,7 +43,7 @@ npm install kinestex-sdk-react-native react-native-webview
 npx expo install react-native-webview
 ```
 
-### 2.1: Enable device orientation permission for  iOS 15+
+### 3: Enable device orientation permission for  iOS 15+
 `react-native-webview` does not currently support the iOS 15+ permission API for Device Motion/Orientation automatically. To ensure KinesteX works correctly on iOS, you must apply a small patch to the webview package.
 
 1. Install patch-package
@@ -56,9 +56,9 @@ npm install patch-package postinstall-postinstall --save-dev
 Add "postinstall": "patch-package" to your scripts:
 
 ```json
-	"scripts": {
-	  "postinstall": "patch-package"
-	}
+"scripts": {
+  "postinstall": "patch-package"
+}
 ```
 3. Apply the Fix
 
@@ -81,6 +81,10 @@ Add "postinstall": "patch-package" to your scripts:
   decisionHandler(WKPermissionDecisionGrant);
 }
 ```
+How it should look like:
+<img width="1068" height="831" alt="Screenshot 2025-11-19 at 3 35 25 PM" src="https://github.com/user-attachments/assets/a29fe410-ff24-4635-b450-70c9d9b6f7b5" />
+
+
 4. Save the Patch
 
 
@@ -89,7 +93,10 @@ Run the following command to create a permanent patch file:
 npx patch-package react-native-webview
 ```
 Now, every time you (or your team) run npm install, this fix will be applied automatically.
-### 3. Setup recommendations
+
+
+
+### 4. Setup recommendations
 1. Create a reference to KinesteXSDK component: 
 ```typescript
 const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
@@ -143,7 +150,7 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 };
 ```
 
-### 4. Camera permission (Expo Android troubleshoot)
+### 5. Camera permission (Expo Android troubleshoot)
 In Android when building app with Expo, App level camera permission is not passed to the webview, so even if the camera permission dialog pops up, camera request in KinesteX never resolves. 
 To fix this:
 - Install expo-camera `npx expo install expo-camera`
