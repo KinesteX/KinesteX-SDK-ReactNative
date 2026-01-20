@@ -147,6 +147,38 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 |------------|------------|-------------|
 | `kinestex_home_exit` | `workout: string`, `date: string` (format: "dd mm yyyy hh:mm:ss") | Exit from KinesteX home |
 
+## Admin Workout Editor Events
+
+These events are specific to the `WORKOUT_ADMIN_VIEW` integration option.
+
+### Exercise Events (Admin)
+
+| Event Type | Data Fields | Description |
+|------------|------------|-------------|
+| `exercise_opened` | `exercise_id: string`, `exercise_title: string` | Exercise detail page opened |
+| `exercise_selection_opened` | `from_workout_id?: string` | Exercise list page opened |
+| `exercise_selected` | `exercise_id: string`, `exercise_title: string` | Exercise selected from menu |
+| `exercise_saved` | `exercise_id: string` | Exercise created or updated |
+| `exercise_removed` | `workout_id: string`, `exercise_id: string` | Exercise removed from workout |
+
+### Workout Events (Admin)
+
+| Event Type | Data Fields | Description |
+|------------|------------|-------------|
+| `workout_opened` | `workout_id: string`, `workout_title: string` | Workout detail page opened |
+| `workout_selection_opened` | - | Workout list page opened |
+| `workout_selected` | `workout_id: string`, `workout_title: string` | Workout selected from menu |
+| `workout_saved` | `workout_id: string` | Workout created or updated |
+
+### Plan Events (Admin)
+
+| Event Type | Data Fields | Description |
+|------------|------------|-------------|
+| `plan_opened` | `plan_id: string`, `plan_title: string` | Plan detail page opened |
+| `plan_selection_opened` | - | Plan list page opened |
+| `plan_selected` | `plan_id: string`, `plan_title: string` | Plan selected from menu |
+| `plan_saved` | `plan_id: string` | Plan created or updated |
+
 ## Error Handling
 
 | Event Type | Data Fields | Description |
@@ -188,4 +220,11 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 2. `exercise_completed` → Exercise finished
 3. `challenge_completed` → Challenge complete
 4. `challenge_exit` → Exit from challenge
+
+#### Admin Editor Flow
+1. `kinestex_loaded` → Admin dashboard loaded
+2. `kinestex_launched` → Authenticated successfully
+3. `workout_opened` / `exercise_opened` / `plan_opened` → Content opened for editing
+4. `workout_saved` / `exercise_saved` / `plan_saved` → Content saved
+5. `workout_selected` / `exercise_selected` / `plan_selected` → Content selected (when `isSelectableMenu: true`)
 

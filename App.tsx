@@ -11,9 +11,11 @@ import {
   CameraComponent,
   LeaderboardComponent,
   CustomWorkoutComponent,
+  WorkoutEditorComponent,
   ComponentType,
 } from './src/components';
 import PersonalizedPlanComponent from './src/components/PersonalizedPlanComponent';
+import {ContentNavigator} from './src/content';
 
 const App = () => {
   const [selectedComponent, setSelectedComponent] =
@@ -79,6 +81,16 @@ const App = () => {
         return <PersonalizedPlanComponent onMessage={handleMessage} />;
       case 'custom-workout':
         return <CustomWorkoutComponent onMessage={handleMessage} />;
+      case 'workout-editor':
+        return <WorkoutEditorComponent onMessage={handleMessage} />;
+      case 'content-browser':
+        return (
+          <ContentNavigator
+            apiKey="13c5398cf7a98e3469f6fc8a9a5b2b9d5c8a4814"
+            companyName="KinesteX"
+            onClose={() => setSelectedComponent(null)}
+          />
+        );
       default:
         return null;
     }
