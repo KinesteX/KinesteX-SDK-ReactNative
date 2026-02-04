@@ -10,6 +10,7 @@ import {
   ExperienceComponent,
   CameraComponent,
   LeaderboardComponent,
+  WorkoutEditorComponent,
   CustomWorkoutComponent,
   ComponentType,
 } from './src/components';
@@ -77,6 +78,8 @@ const App = () => {
         return <LeaderboardComponent onMessage={handleMessage} />;
       case 'personalized-plan':
         return <PersonalizedPlanComponent onMessage={handleMessage} />;
+      case 'workout-editor':
+        return <WorkoutEditorComponent onMessage={handleMessage} />;
       case 'custom-workout':
         return <CustomWorkoutComponent onMessage={handleMessage} />;
       default:

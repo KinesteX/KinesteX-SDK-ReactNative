@@ -5,6 +5,7 @@ export {default as ChallengeComponent} from './ChallengeComponent';
 export {default as ExperienceComponent} from './ExperienceComponent';
 export {default as CameraComponent} from './CameraComponent';
 export {default as LeaderboardComponent} from './LeaderboardComponent';
+export {default as WorkoutEditorComponent} from './WorkoutEditorComponent';
 export {default as CustomWorkoutComponent} from './CustomWorkoutComponent';
 export {default as DropdownSelector} from './DropdownSelector';
 export type {ComponentType} from './DropdownSelector';

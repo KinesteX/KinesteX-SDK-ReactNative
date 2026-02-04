@@ -13,6 +13,7 @@
 | [`EXPERIENCE`](./plug-and-play/ai-experiences.md)  | Displays AI Experience. Please contact support for more details | [View Documentation](./plug-and-play/ai-experiences.md)     |
 | [`(Beta) PERSONALIZED_PLAN`](./plug-and-play/personalized-plan.md)  | Displays a short survey and AI assessment upon completion a personalized AI plan will be created. Please contact support for more details | [View Documentation](./plug-and-play/personalized-plan.md)     |
 | [`CUSTOM_WORKOUT`](./plug-and-play/custom-workout.md)  | Allows you to pass exercise ids and display the workout flow, allowing you to customize and handle the onboarding process on app level and navigate user straight to the workout | [View Documentation](./plug-and-play/custom-workout.md)     |
+| [`WORKOUT_ADMIN_VIEW`](./plug-and-play/workout-editor.md)  | Admin dashboard for creating and managing workouts, exercises, and plans | [View Documentation](./plug-and-play/workout-editor.md)     |
 
 
 
@@ -41,6 +42,7 @@
 - [Gamified AI Experiences](./plug-and-play/ai-experiences.md)
 - [(Beta) Personalized Plan](./plug-and-play/personalized-plan.md)
 - [Custom Workout](./plug-and-play/custom-workout.md)
+- [Admin Workout Editor](./plug-and-play/workout-editor.md)
 
 ### Custom Solutions: 
 - [Motion Analysis](./custom/motion-analysis-component.md)
