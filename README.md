@@ -4,7 +4,7 @@
 # **Jump to:**
 ## [New Documentation ✨](https://www.kinestex.com/docs/getting-started?lang=react-native)
 Older docs:
-1. **🚀 [Quick Start](https://www.kinestex.com/docs/getting-started?lang=react-native)**  
+1. **🚀 [Quick Start](docs/getting-started.md)**  
 2. **📱 [Integration Options](docs/integration/overview.md)**  
 3. **📋 [Data points](docs/data.md)**  
 4. **💡 [Examples](docs/examples/code-samples.md)**
