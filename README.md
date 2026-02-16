@@ -2,12 +2,13 @@
 #### Stay Ahead with KinesteX AI Motion Tracking and Analysis.
 
 # **Jump to:**
-
-1. ### **🚀 [Quick Start](docs/getting-started.md)**  
-2. ### **📱 [Integration Options](docs/integration/overview.md)**  
-3. ### **📋 [Data points](docs/data.md)**  
-4. ### **💡 [Examples](docs/examples/code-samples.md)**
-5. ### **📧 [Contact us](#need-help)**
+## [New Documentation ✨](https://www.kinestex.com/docs/getting-started?lang=react-native)
+Older docs:
+1. **🚀 [Quick Start](https://www.kinestex.com/docs/getting-started?lang=react-native)**  
+2. **📱 [Integration Options](docs/integration/overview.md)**  
+3. **📋 [Data points](docs/data.md)**  
+4. **💡 [Examples](docs/examples/code-samples.md)**
+5. **📧 [Contact us](#need-help)**
 
 ---
 
