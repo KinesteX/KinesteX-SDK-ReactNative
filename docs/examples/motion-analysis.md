@@ -13,20 +13,27 @@ import {
 const App = () => {
   const kinestexSDKRef = useRef<KinesteXSDKCamera>(null);
 
-  // Define the post data for integration
+  // Define the post data for integration.
+  // `exerciseFetchType` controls how `exercises[]` and `currentExercise` are
+  // resolved. Defaults to "model_id" when omitted.
   const postDataCamera: IPostData = {
     key: 'YOUR API KEY',
     userId: 'YOUR USER ID',
     company: 'YOUR COMPANY NAME',
-    currentExercise: 'Squats', // current exercise name
-    exercises: ['Squats', 'Jumping Jack'], // array of expected exercises
+    currentExercise: 'Squats',
+    exercises: ['Squats'],
+    exerciseFetchType: 'exercise_title',
   };
 
-  // Function to change exercise
-  const changeExercise = () => {
-    if (kinestexSDKRef.current) {
-      kinestexSDKRef.current.changeExercise('Jumping Jack');
-    }
+  // Step 1 — fetch + cache an extra model mid-session. This does NOT switch
+  // the active exercise; we switch in `handleMessage` once `models_loaded`
+  // arrives with a matching `modelIds` entry.
+  const loadJumpingJack = () => {
+    kinestexSDKRef.current?.sendAction(
+      'workout_activity_action',
+      'load_models',
+      { exercises: ['Jumping Jack'], exerciseFetchType: 'exercise_title' },
+    );
   };
 
   // Handle messages from the SDK
@@ -40,6 +47,23 @@ const App = () => {
         break;
       case 'mistake':
         console.log('Mistake:', data.value);
+        break;
+      case 'models_loaded':
+        // Step 2 — model is cached; switch the active exercise. Do NOT
+        // repeat `exerciseFetchType` on the switch.
+        if (Array.isArray(data.modelIds) && data.modelIds.includes('Jumping Jack')) {
+          kinestexSDKRef.current?.sendAction('currentExercise', 'Jumping Jack');
+        }
+        break;
+      case 'speech_fetch_complete':
+        // Branch on `modelIds`: present → mistake-feedback audio cached;
+        // absent → rest-speech batch finished.
+        if (data.modelIds) {
+          console.log('Mistake-feedback audio cached for:', data.modelIds);
+        }
+        break;
+      case 'error_occurred':
+        console.warn('KinesteX error:', data.message);
         break;
       default:
         console.log('Unknown message type:', type, data);
@@ -57,9 +81,9 @@ const App = () => {
         />
         <TouchableOpacity 
           style={styles.button}
-          onPress={changeExercise}
+          onPress={loadJumpingJack}
         >
-          <Text style={styles.buttonText}>Switch to Jumping Jack</Text>
+          <Text style={styles.buttonText}>Load & switch to Jumping Jack</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
