@@ -1,3 +1,12 @@
+## [1.3.2] - Sep 3 2026
+### Added
+- `onContentProcessDidTerminate` (iOS) and `onRenderProcessGone` (Android) handlers on the internal WebView. When the OS kills the WebView process (memory pressure on older iPads during pose tracking), the SDK now reloads the view instead of leaving a blank screen, and forwards an `error_occurred` message (`errorCode: content_process_terminated` / `render_process_gone`) to your `handleMessage`.
+- `error_occurred` messages coming from the KinesteX page (for example `"Error accessing camera"`) are now also logged with `console.warn("KinesteX error_occurred: ...")`, so they are visible in device logs even if your `handleMessage` does not log them.
+
+### Notes
+- No API changes. Update with `npm install kinestex-sdk-react-native@1.3.2`.
+- If a user reports a blank camera box on iPad, ask them to fully close and relaunch the app, then check your logs for `error_occurred` messages from the SDK.
+
 ## [1.2.7] - Nov 19 2025
 ### Changed
 - Removed `kinestex-react-native-webview` as a direct dependency. It didn't prove to scale and users reported running into duplication issues if they already use react-native-webview, so instead of patching the iOS issue ourselves and republishing the react-native-webview ourselves, we decided to provide patch instructions. This is the simplest and most reliable approach. 
