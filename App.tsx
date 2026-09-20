@@ -11,6 +11,8 @@ import {
   CameraComponent,
   LeaderboardComponent,
   CustomWorkoutComponent,
+  WarmupComponent,
+  GenericWarmupComponent,
   ComponentType,
 } from './src/components';
 import PersonalizedPlanComponent from './src/components/PersonalizedPlanComponent';
@@ -79,6 +81,10 @@ const App = () => {
         return <PersonalizedPlanComponent onMessage={handleMessage} />;
       case 'custom-workout':
         return <CustomWorkoutComponent onMessage={handleMessage} />;
+      case 'warmup':
+        return <WarmupComponent onMessage={handleMessage} />;
+      case 'generic-warmup':
+        return <GenericWarmupComponent onMessage={handleMessage} />;
       default:
         return null;
     }

@@ -47,7 +47,19 @@ This directory contains organized components for different KinesteX SDK integrat
 - **Description**: Displays community leaderboards and user rankings.
 - **Configuration**: Standard leaderboard integration.
 
-### 8. DropdownSelector
+### 8. WarmupComponent
+
+- **Integration Option**: `WORKOUT` with `visible`
+- **Description**: Warms up the "Fitness Lite" workout off screen and opens it instantly on tap. Shows the warmup state and how long the first warmup took.
+- **Special Features**: Hides KinesteX on exit instead of unmounting it.
+
+### 9. GenericWarmupComponent
+
+- **Component**: `KinestexWarmup`
+- **Description**: Signs in and fills the caches off screen when the destination is not known yet, then opens a workout from those caches.
+- **Special Features**: Unmounts `KinestexWarmup` before showing KinesteX.
+
+### 10. DropdownSelector
 
 - **Description**: A dropdown component that allows users to select which KinesteX integration to view.
 - **Features**:

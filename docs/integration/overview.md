@@ -23,6 +23,12 @@
 | [`CAMERA`](./custom/motion-analysis-component.md) | Integrate our camera component with pose-analysis and feedback | [View Documentation](./custom/motion-analysis-component.md)             |
    
 
+## Performance:
+
+| Feature | Description | Documentation |
+|---------|-------------|---------------|
+| [`Warmup`](./warmup.md) | Optional. Load KinesteX off screen before the user opens it, so it appears instantly | [View Documentation](./warmup.md) |
+
 ## Learn more 
 | **Integration Option**         | **Description**                                                                                                 | **Features**                                                                                                                                                                          | **Details**                                                                                                             |
 |--------------------------------|-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|
@@ -44,3 +50,6 @@
 
 ### Custom Solutions: 
 - [Motion Analysis](./custom/motion-analysis-component.md)
+
+### Performance:
+- [Warmup](./warmup.md)

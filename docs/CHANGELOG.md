@@ -1,3 +1,15 @@
+## [1.4.0] - Sep 20 2026
+### Added
+- Optional warmup. Pass `visible={false}` to `KinestexSDK` to load it off screen, then `visible={true}` to show it instantly. Render `KinestexWarmup` when you do not know the destination yet. See [warmup.md](./integration/warmup.md).
+- `onWarmupStateChange` prop reporting `loading`, `ready` or `failed`.
+- `IntegrationOption.WARMUP`. Existing option values are unchanged.
+
+### Fixed
+- Props that become valid after mount (for example a user id that is still loading) no longer crash the component.
+
+### Notes
+- No migration needed. Without the new props the SDK behaves exactly as before.
+
 ## [1.2.7] - Nov 19 2025
 ### Changed
 - Removed `kinestex-react-native-webview` as a direct dependency. It didn't prove to scale and users reported running into duplication issues if they already use react-native-webview, so instead of patching the iOS issue ourselves and republishing the react-native-webview ourselves, we decided to provide patch instructions. This is the simplest and most reliable approach. 
