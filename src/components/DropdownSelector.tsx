@@ -11,7 +11,9 @@ export type ComponentType =
   | 'camera'
   | 'leaderboard'
   | 'personalized-plan'
-  | 'custom-workout';
+  | 'custom-workout'
+  | 'warmup'
+  | 'generic-warmup';
 
 interface DropdownSelectorProps {
   selectedComponent: ComponentType | null;
@@ -32,6 +34,8 @@ const DropdownSelector: React.FC<DropdownSelectorProps> = ({
     {label: 'Leaderboard Integration', value: 'leaderboard'},
     {label: 'Personalized Plan Integration', value: 'personalized-plan'},
     {label: 'Custom Workout Integration', value: 'custom-workout'},
+    {label: 'Warmup (known destination)', value: 'warmup'},
+    {label: 'Warmup (generic)', value: 'generic-warmup'},
   ];
 
   return (

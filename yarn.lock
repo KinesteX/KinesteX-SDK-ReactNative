@@ -4720,10 +4720,10 @@ kind-of@^6.0.2:
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
   integrity sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
 
-kinestex-sdk-react-native@1.3.1:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/kinestex-sdk-react-native/-/kinestex-sdk-react-native-1.3.1.tgz#29211c575129c8d5566ce189eb88b7cee6e2a62e"
-  integrity sha512-ADzx62FuDyu2C2J1Nja+wQUeZRgJlxPDdM4ybe/e9t0/XfpjkwgiZsxBnal+3836g7A6ko8b9vRwU4OiX4oJ3A==
+kinestex-sdk-react-native@1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/kinestex-sdk-react-native/-/kinestex-sdk-react-native-1.4.0.tgz#a05f5cf6facc57f21fae350d5fb8fd49f7719b58"
+  integrity sha512-5PygNYbLpadW9+hec85tJUMVO6QlmA7d5FbRDsJiqVXdE2QfoBn+2Ykobvl/GDvxi4iGxAn1Jmj3udXZ0hlNNQ==
 
 klaw-sync@^6.0.0:
   version "6.0.0"
