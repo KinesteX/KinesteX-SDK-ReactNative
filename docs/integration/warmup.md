@@ -4,7 +4,7 @@
 - **Two modes**: Warm up the exact screen you will open, or warm up the caches when you do not know yet.
 - **Safe by default**: If a warmup fails or goes out of date, KinesteX simply loads fresh when shown, like a normal launch.
 
-Available from `kinestex-sdk-react-native` 1.4.0.
+Available from `kinestex-sdk-react-native` 1.4.0. Use 1.4.1 or later: it fixes Android launches that could hang when the warmup was still loading.
 
 # **When you know what you will open**
 
@@ -49,7 +49,7 @@ const handleMessage = (type: string, data: { [key: string]: any }) => {
 ```
 
 - When shown, the SDK loads fresh if `data` or the target changed while hidden, if the hidden load failed, or if the warm page is older than 15 minutes.
-- `CAMERA`, `EXPERIENCE` and any launch using `instantRedirect` could open the camera on load, so while hidden they only warm the caches. The real page loads when shown.
+- `CAMERA`, `EXPERIENCE` and any launch using `instantRedirect` could open the camera on load, so while hidden they only load a light warmup page, and `ready` means that page has signed in. The real page loads when shown.
 - Setting `visible` back to `false` replaces the used page with a light warmup page. The next open is a normal load from warm caches, not an instant one.
 - A hidden load of a real page is a real page load for KinesteX. It is recorded in analytics as an open, even if the user never sees it. Warm up when the user is likely to open KinesteX, not on every app start.
 - Keep a single hidden instance, and unmount it when the user is unlikely to open KinesteX soon. A warmed instance holds the full web app and its pose model in memory, a few hundred MB, the same as a visible one. Unmounting frees all of it.
@@ -72,6 +72,12 @@ import KinestexSDK, { KinestexWarmup } from "kinestex-sdk-react-native";
   <KinestexWarmup data={postData} onWarmupStateChange={(state) => {}} />
 )}
 ```
+
+### Rules that matter
+
+- You can unmount `KinestexWarmup` at any moment, including while it is still `loading`. The next `KinestexSDK` loads normally from whatever is already cached, so there is no need to wait for `ready` or `failed`.
+- Unmount it before `KinestexSDK` mounts, not after. With React Navigation, render it on the screen the user opens KinesteX from, unmount it when that screen loses focus, and mount `KinestexSDK` on the next screen.
+- `ready` means it has signed in and cached the app and the theme. The pose model keeps downloading in the background after that, so the longer it stays mounted, the faster the first workout starts.
 
 `KinestexWarmup` also accepts an optional `handleMessage`. It receives data events only, for example a workout that was saved from the offline queue, and never `kinestex_loaded`, `kinestex_launched` or `error_occurred`.
 

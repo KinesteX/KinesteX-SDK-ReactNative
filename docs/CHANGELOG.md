@@ -1,3 +1,10 @@
+## [1.4.1] - Oct 9 2026
+### Fixed
+- Android: a launch could stay on the loading screen, or take many seconds to start, when `KinestexWarmup` was unmounted while still loading. The SDK now sends the launch data as soon as the page is ready instead of waiting for every file to finish loading.
+
+### Notes
+- No migration needed. See [warmup.md](./integration/warmup.md) for when to unmount `KinestexWarmup` and what `ready` means.
+
 ## [1.4.0] - Sep 20 2026
 ### Added
 - Optional warmup. Pass `visible={false}` to `KinestexSDK` to load it off screen, then `visible={true}` to show it instantly. Render `KinestexWarmup` when you do not know the destination yet. See [warmup.md](./integration/warmup.md).
